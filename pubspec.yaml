@@ -1,0 +1,53 @@
+name: todo_list_app
+description: "To-do List Mobile Application made with Flutter."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+# Dependencies
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/logo.png
+    - images/logo2.png
+    - images/morningmenhera.png
+  
+  fonts:
+  - family: Poppins
+    fonts:
+      - asset: fonts/Poppins-Regular.ttf
+      - asset: fonts/Poppins-SemiBold.ttf
+        weight: 400
+      - asset: fonts/Poppins-SemiBoldItalic.ttf
+        weight: 400
+        style: italic
+      - asset: fonts/Poppins-Bold.ttf
+        weight: 700
+      - asset: fonts/Poppins-BoldItalic.ttf
+        weight: 700
+        style: italic
+      - asset: fonts/Poppins-ExtraBold.ttf
+        weight: 900
+      - asset: fonts/Poppins-ExtraBoldItalic.ttf
+        weight: 900
+        style: italic
