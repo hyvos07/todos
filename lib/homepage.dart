@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_list_app/homepage_widget/ongoing_task.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   String goodWhat(DateTime date) {
+    // Greeting User Chooser
     var hour = date.hour;
     if (hour < 12) {
       return ("Good Morning");
@@ -18,6 +20,7 @@ class HomePage extends StatelessWidget {
   }
 
   String greet(String goodWhat) {
+    // Motivational Support Chooser
     if (goodWhat == "Good Morning") {
       return "New adventures await you today!";
     } else if (goodWhat == "Good Afternoon") {
@@ -27,13 +30,21 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  String menhera(String goodWhat) {
+    // Menhera-chan Chooser
+    if (goodWhat == "Good Morning") {
+      return "images/morningmenhera.png";
+    } else if (goodWhat == "Good Afternoon") {
+      return "images/menheracheer.png";
+    } else {
+      return "images/gnmenhera.png";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Get Today's Date
-    var formatter = DateFormat('EEEE, MMM d yyyy');
-    // Adding 7 hours to change default UTC timezone to GMT+7
+    // Get Today's Date; Adding 7 hours to change default UTC timezone to GMT+7
     DateTime now = DateTime.now().toUtc().add(const Duration(hours: 7));
-    String formattedDate = formatter.format(now);
 
     // Screen Size
     double hei = MediaQuery.of(context).size.height;
@@ -43,6 +54,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 12,
         backgroundColor: Colors.white.withOpacity(0.7),
+        scrolledUnderElevation: 10,
         shadowColor: Colors.black.withOpacity(0.5),
         toolbarHeight: 55,
         centerTitle: true,
@@ -63,9 +75,10 @@ class HomePage extends StatelessWidget {
                   children: [
                     // -- Greeting User -- //
                     Padding(
-                      padding: const EdgeInsets.only(top: 40),
+                      padding:
+                          const EdgeInsets.only(top: 40, right: 25, left: 25),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // -- Greetings -- //
                           Column(
@@ -101,27 +114,15 @@ class HomePage extends StatelessWidget {
                           ),
                           // -- Menhera-chan -- //
                           Image.asset(
-                            'images/morningmenhera.png',
+                            menhera(goodWhat(now)),
                             fit: BoxFit.contain,
-                            height: 70,
+                            height: 55,
                           ),
                         ],
                       ),
                     ),
                     // -- Ongoing Task -- //
-                    const Padding(
-                        padding: EdgeInsets.only(left: 25, top: 55),
-                        child: Text(
-                          "Ongoing Task",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                            height: 0.05,
-                          ),
-                        )),
+                    const OngoingTask(),
                   ],
                 )
               ],
