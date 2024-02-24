@@ -42,15 +42,18 @@ class OngoingTask extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                "${ongoingTasks.length} Tasks",
-                textAlign: TextAlign.right,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  height: 0.05,
+              Padding(
+                padding: const EdgeInsets.only(right: 1),
+                child: Text(
+                  "${ongoingTasks.length} Tasks",
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    height: 0.05,
+                  ),
                 ),
               )
             ],
