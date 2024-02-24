@@ -32,15 +32,18 @@ class CompletedTask extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Completed Task",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w700,
-                  height: 0.05,
+              const Padding(
+                padding: EdgeInsets.only(left: 1),
+                child: Text(
+                  "Completed Task",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w700,
+                    height: 0.05,
+                  ),
                 ),
               ),
               Text(
