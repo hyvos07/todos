@@ -1,53 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/aboutyou_widget/email_field.dart';
+import 'package:todo_list_app/aboutyou_widget/date_field.dart';
+import 'package:todo_list_app/aboutyou_widget/avatar.dart';
+import 'package:todo_list_app/aboutyou_widget/name_field.dart';
+import 'package:todo_list_app/aboutyou_widget/major_field.dart';
 
-class AboutYouPage extends StatelessWidget {
+class AboutYouPage extends StatefulWidget {
   const AboutYouPage({super.key});
 
   @override
+  State<AboutYouPage> createState() => _AboutYouPageState();
+}
+
+class _AboutYouPageState extends State<AboutYouPage> {
+  @override
   Widget build(BuildContext context) {
+    double hei = MediaQuery.of(context).size.height;
+    double wid = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xFF5038BC),
       appBar: AppBar(
-        elevation: 12,
-        backgroundColor: Colors.white.withOpacity(0.7),
-        scrolledUnderElevation: 10,
-        shadowColor: Colors.white.withOpacity(0.5),
-        toolbarHeight: 55,
+        backgroundColor: Colors.white.withOpacity(0),
+        toolbarHeight: 80,
         centerTitle: true,
-        title: Image.asset(
-          'images/logo2.png',
-          fit: BoxFit.contain,
-          height: 44,
+        title: const Text(
+          "My Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Colors.white,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                  height: hei - 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(45),
+                    color: const Color.fromARGB(253, 253, 253, 253),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 45),
+                    child: Column(
+                      children: [
+                        const Avatar(),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            NameField(),
+                            MajorField(),
+                            DateField(),
+                            EmailField()
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Name: John Doe',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Age: 25',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Location: New York',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
