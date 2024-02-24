@@ -14,19 +14,19 @@ class CompletedTask extends StatelessWidget {
     double wid = MediaQuery.of(context).size.width;
 
     List<Widget> completedTasks = [
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
-      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
+      const singleTask(taskName: 'Tasks', taskDone: true),
     ];
 
     return Container(
-      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 47.5),
+      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 40),
       child: Column(
         children: [
           Row(

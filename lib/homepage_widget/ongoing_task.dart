@@ -15,10 +15,10 @@ class OngoingTask extends StatelessWidget {
     double wid = MediaQuery.of(context).size.width;
     
     List<Widget> ongoingTasks = [
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
+      const singleTask(taskName: 'Tasks', taskDone: false),
+      const singleTask(taskName: 'Tasks', taskDone: false),
+      const singleTask(taskName: 'Tasks', taskDone: false),
+      const singleTask(taskName: 'Tasks', taskDone: false),
     ];
 
     return Container(
