@@ -78,7 +78,12 @@ class HomePage extends StatelessWidget {
                     // -- Greeting User -- //
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 40, right: 25, left: 25),
+                          const EdgeInsets.only(
+                            top: 47,
+                            right: 25, 
+                            left: 25,
+                            bottom: 10
+                          ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -91,7 +96,7 @@ class HomePage extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 22,
+                                  fontSize: 23,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w700,
                                   height: 0.05,
@@ -105,7 +110,7 @@ class HomePage extends StatelessWidget {
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     color: Colors.black,
-                                    fontSize: 14,
+                                    fontSize: 15,
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w400,
                                     height: 0.05,
