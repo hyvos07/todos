@@ -57,7 +57,7 @@ class _MainAppState extends State<MainApp> {
             showUnselectedLabels: false,
             showSelectedLabels: false,
             selectedIconTheme: IconThemeData(size: 40),
-            unselectedIconTheme: IconThemeData(size: 27),
+            unselectedIconTheme: IconThemeData(size: 32),
             onTap: (int index) {
               setState(() {
                 _pageIndexNow = index;
