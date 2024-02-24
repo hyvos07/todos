@@ -53,6 +53,7 @@ class HomePage extends StatelessWidget {
     double wid = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(253, 253, 253, 253),
       appBar: AppBar(
         elevation: 12,
         backgroundColor: Colors.white.withOpacity(0.7),
@@ -77,13 +78,8 @@ class HomePage extends StatelessWidget {
                   children: [
                     // -- Greeting User -- //
                     Padding(
-                      padding:
-                          const EdgeInsets.only(
-                            top: 47,
-                            right: 25, 
-                            left: 25,
-                            bottom: 10
-                          ),
+                      padding: const EdgeInsets.only(
+                          top: 47, right: 25, left: 25, bottom: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -104,7 +100,7 @@ class HomePage extends StatelessWidget {
                               ),
                               // -- Motivational Support -- //
                               Padding(
-                                padding: const EdgeInsets.only(top: 27),
+                                padding: const EdgeInsets.only(top: 28),
                                 child: Text(
                                   greet(goodWhat(now)),
                                   textAlign: TextAlign.left,
