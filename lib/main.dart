@@ -17,6 +17,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int _pageIndexNow = 0;
+  final PageController _pageController = PageController();
 
   final List<Widget> _pages = [
     HomePage(),
@@ -27,12 +28,25 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: _pages[_pageIndexNow],
+        body: PageView(
+          controller: _pageController,
+          children: _pages,
+          onPageChanged: (int index) {
+            setState(() {
+              _pageIndexNow = index;
+            });
+          },
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndexNow,
           onTap: (int index) {
             setState(() {
               _pageIndexNow = index;
+              _pageController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+              );
             });
           },
           items: const [

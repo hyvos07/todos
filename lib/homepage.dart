@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list_app/homepage_widget/ongoing_task.dart';
 
+import 'homepage_widget/completed_task.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -123,6 +125,8 @@ class HomePage extends StatelessWidget {
                     ),
                     // -- Ongoing Task -- //
                     const OngoingTask(),
+                    // -- Completed Task -- //
+                    const CompletedTask(),
                   ],
                 )
               ],

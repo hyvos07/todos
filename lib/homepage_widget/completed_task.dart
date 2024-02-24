@@ -4,32 +4,36 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list_app/homepage_widget/single_task.dart';
 
-class OngoingTask extends StatelessWidget {
-  const OngoingTask({Key? key}) : super(key: key);
-
+class CompletedTask extends StatelessWidget {
+  const CompletedTask({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Screen Size
     double hei = MediaQuery.of(context).size.height;
     double wid = MediaQuery.of(context).size.width;
-    
-    List<Widget> ongoingTasks = [
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
-      const singleTask(taskName: 'Course', taskDone: false),
+
+    List<Widget> completedTasks = [
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
+      const singleTask(taskName: 'Course', taskDone: true),
     ];
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 47.5),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "Ongoing Task",
+                "Completed Task",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Colors.black,
@@ -40,7 +44,7 @@ class OngoingTask extends StatelessWidget {
                 ),
               ),
               Text(
-                "${ongoingTasks.length} Tasks",
+                "${completedTasks.length} Tasks",
                 textAlign: TextAlign.right,
                 style: const TextStyle(
                   color: Colors.black,
@@ -56,7 +60,7 @@ class OngoingTask extends StatelessWidget {
             padding: const EdgeInsets.only(top: 17.5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: ongoingTasks,
+              children: completedTasks,
             ),
           )
         ],

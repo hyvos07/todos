@@ -5,14 +5,24 @@ import 'package:intl/intl.dart';
 
 class singleTask extends StatelessWidget {
   final String taskName;
-  bool taskDone = false;
-  singleTask({super.key, required this.taskName});
+  final bool taskDone;
+  const singleTask({super.key, required this.taskName, required this.taskDone});
+
+  Color btnColor(taskDone) {
+    if (taskDone) {
+      return const Color(0xFF5038BC);
+    } else {
+      return const Color(0xFFFFFFFF);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // Screen Size
     double hei = MediaQuery.of(context).size.height;
     double wid = MediaQuery.of(context).size.width;
+
+    Color btnOn = btnColor(taskDone);
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),
@@ -23,9 +33,7 @@ class singleTask extends StatelessWidget {
           color: Colors.white,
           shape: RoundedRectangleBorder(
             side: const BorderSide(
-              width: 1.5,
-              color: Color.fromARGB(40, 54, 49, 82)
-            ),
+                width: 1.5, color: Color.fromARGB(40, 54, 49, 82)),
             borderRadius: BorderRadius.circular(10),
           ),
           shadows: const [
@@ -78,9 +86,9 @@ class singleTask extends StatelessWidget {
                     child: Container(
                       width: 16,
                       height: 16,
-                      decoration: const ShapeDecoration(
-                        color: Colors.white,
-                        shape: OvalBorder(),
+                      decoration: ShapeDecoration(
+                        color: btnOn,
+                        shape: const OvalBorder(),
                       ),
                     ),
                   ),
