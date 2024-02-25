@@ -1,12 +1,11 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class singleTask extends StatelessWidget {
+class SingleTask extends StatelessWidget {
   final String taskName;
   final bool taskDone;
-  const singleTask({super.key, required this.taskName, required this.taskDone});
+  const SingleTask({super.key, required this.taskName, required this.taskDone});
 
   Color btnColor(taskDone) {
     if (taskDone) {
@@ -18,9 +17,6 @@ class singleTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Screen Size
-    double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
 
     Color btnOn = btnColor(taskDone);
 

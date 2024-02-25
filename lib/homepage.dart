@@ -1,10 +1,9 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_list_app/homepage_widget/ongoing_task.dart';
+import 'package:todos/homepage_widget/ongoing_task.dart';
+import 'package:todos/homepage_widget/completed_task.dart';
 
-import 'homepage_widget/completed_task.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -48,10 +47,6 @@ class HomePage extends StatelessWidget {
     // Get Today's Date; Adding 7 hours to change default UTC timezone to GMT+7
     DateTime now = DateTime.now().toUtc().add(const Duration(hours: 7));
 
-    // Screen Size
-    double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(253, 253, 253, 253),
       appBar: AppBar(
@@ -62,7 +57,7 @@ class HomePage extends StatelessWidget {
         toolbarHeight: 55,
         centerTitle: true,
         title: Image.asset(
-          'images/logo2.png',
+          'images/logofull.png',
           fit: BoxFit.contain,
           height: 44,
         ),

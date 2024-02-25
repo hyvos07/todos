@@ -1,28 +1,24 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_list_app/homepage_widget/single_task.dart';
+import 'package:todos/homepage_widget/single_task.dart';
 
 class CompletedTask extends StatelessWidget {
   const CompletedTask({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Screen Size
-    double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
 
     List<Widget> completedTasks = [
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
-      const singleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
+      const SingleTask(taskName: 'Tasks', taskDone: true),
     ];
 
     return Container(

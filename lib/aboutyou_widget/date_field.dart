@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateField extends StatefulWidget {
-  DateField({super.key});
+  const DateField({super.key});
 
   @override
   State<DateField> createState() => _DateFieldState();

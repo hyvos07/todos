@@ -1,8 +1,7 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_list_app/homepage_widget/single_task.dart';
+import 'package:todos/homepage_widget/single_task.dart';
 
 class OngoingTask extends StatelessWidget {
   const OngoingTask({Key? key}) : super(key: key);
@@ -10,15 +9,11 @@ class OngoingTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Screen Size
-    double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
-    
     List<Widget> ongoingTasks = [
-      const singleTask(taskName: 'Tasks', taskDone: false),
-      const singleTask(taskName: 'Tasks', taskDone: false),
-      const singleTask(taskName: 'Tasks', taskDone: false),
-      const singleTask(taskName: 'Tasks', taskDone: false),
+      const SingleTask(taskName: 'Tasks', taskDone: false),
+      const SingleTask(taskName: 'Tasks', taskDone: false),
+      const SingleTask(taskName: 'Tasks', taskDone: false),
+      const SingleTask(taskName: 'Tasks', taskDone: false),
     ];
 
     return Container(

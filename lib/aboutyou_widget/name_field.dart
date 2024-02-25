@@ -12,7 +12,7 @@ class NameField extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.only(left: 2),
-          margin: const EdgeInsets.only(top: 57.5),
+          margin: const EdgeInsets.only(top: 40),
           child: const Text(
             "Name",
             textAlign: TextAlign.left,

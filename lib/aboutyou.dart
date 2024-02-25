@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/aboutyou_widget/email_field.dart';
-import 'package:todo_list_app/aboutyou_widget/date_field.dart';
-import 'package:todo_list_app/aboutyou_widget/avatar.dart';
-import 'package:todo_list_app/aboutyou_widget/name_field.dart';
-import 'package:todo_list_app/aboutyou_widget/major_field.dart';
+import 'package:todos/aboutyou_widget/email_field.dart';
+import 'package:todos/aboutyou_widget/date_field.dart';
+import 'package:todos/aboutyou_widget/avatar.dart';
+import 'package:todos/aboutyou_widget/name_field.dart';
+import 'package:todos/aboutyou_widget/major_field.dart';
 
 class AboutYouPage extends StatefulWidget {
   const AboutYouPage({super.key});
@@ -16,7 +16,6 @@ class _AboutYouPageState extends State<AboutYouPage> {
   @override
   Widget build(BuildContext context) {
     double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFF5038BC),
@@ -41,14 +40,17 @@ class _AboutYouPageState extends State<AboutYouPage> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Container(
-                  height: hei - 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(45),
-                    color: const Color.fromARGB(253, 253, 253, 253),
+                  height: hei - 210,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(45),
+                      topLeft: Radius.circular(45),
+                    ),
+                    color: Color.fromARGB(253, 253, 253, 253),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 45),
+                        horizontal: 25, vertical: 40),
                     child: Column(
                       children: [
                         const Avatar(),
@@ -58,7 +60,7 @@ class _AboutYouPageState extends State<AboutYouPage> {
                           children: [
                             NameField(),
                             MajorField(),
-                            DateField(),
+                            const DateField(),
                             EmailField()
                           ],
                         )

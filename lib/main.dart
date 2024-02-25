@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'aboutyou.dart';
-import 'homepage.dart';
+import 'package:todos/aboutyou.dart';
+import 'package:todos/addtask.dart';
+import 'package:todos/homepage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,6 +22,7 @@ class _MainAppState extends State<MainApp> {
 
   final List<Widget> _pages = [
     HomePage(),
+    AddTask(),
     AboutYouPage(),
   ];
 
@@ -72,6 +74,10 @@ class _MainAppState extends State<MainApp> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle),
+                label: 'Add Task',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
