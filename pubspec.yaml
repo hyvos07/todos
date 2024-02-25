@@ -34,6 +34,7 @@ flutter:
     - images/morningmenhera.png
     - images/menheracheer.png
     - images/gnmenhera.png
+    - images/confusedmenhera.png
   
   fonts:
   - family: Poppins
