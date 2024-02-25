@@ -38,7 +38,15 @@ class NameField extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: TextField(
                 decoration: const InputDecoration(
-                    hintText: "Enter your name", border: InputBorder.none),
+                    hintText: "Enter your name",
+                    border: InputBorder.none,
+                    hintStyle: TextStyle(
+                      color: Color.fromARGB(255, 94, 86, 132),
+                      fontSize: 14,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w100,
+                    ),
+                  ),
                 controller: _nameController,
               ),
             )),

@@ -40,7 +40,14 @@ class MajorField extends StatelessWidget {
             child: TextField(
               decoration: const InputDecoration(
                   hintText: "Enter your major",
-                  border: InputBorder.none),
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                    color: Color.fromARGB(255, 94, 86, 132),
+                    fontSize: 14,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w100,
+                  ),
+                ),
               controller: _majorController,
             ),
           )
