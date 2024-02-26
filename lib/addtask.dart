@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todos/adddtask_widget/deadline.dart';
-import 'package:todos/adddtask_widget/description.dart';
-import 'package:todos/adddtask_widget/title.dart';
+import 'package:todos/addtask_widget/deadline.dart';
+import 'package:todos/addtask_widget/description.dart';
+import 'package:todos/addtask_widget/title.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -18,18 +18,41 @@ class _AddTaskState extends State<AddTask> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF5038BC),
-      appBar: AppBar(
-        backgroundColor: Colors.white.withOpacity(0),
-        toolbarHeight: 100,
-        centerTitle: true,
-        title: const Text(
-          "Add Task",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-          ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: Stack(
+          children: [
+            AppBar(
+              automaticallyImplyLeading: false,
+              title: const Text(
+                "Add Task",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              backgroundColor: Colors.transparent,
+              toolbarHeight: 100,
+              centerTitle: true,
+            ),
+            Positioned(
+              left: 18,
+              top: 50,
+              child: IconButton(
+                splashColor: Colors.transparent,
+                splashRadius: 1,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              )
+            ),
+          ],
         ),
       ),
       body: SafeArea(
@@ -39,7 +62,7 @@ class _AddTaskState extends State<AddTask> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Container(
-                  height: hei - 120,
+                  height: hei - 150,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(45),
@@ -53,32 +76,37 @@ class _AddTaskState extends State<AddTask> {
                     child: Column(
                       children: [
                         TitleField(),
-                        const DeadlineField(),
                         DescField(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: wid - 20,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 17, vertical: 10),
-                            margin: const EdgeInsets.only(top: 20),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: const Color(0x285038BC),
-                                  width: 1,
+                        const DeadlineField(),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                width: wid - 20,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 17, vertical: 12),
+                                margin: const EdgeInsets.only(top: 20),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: const Color(0x285038BC),
+                                      width: 1,
+                                    ),
+                                    color: const Color(0xFF5038BC),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: const Text(
+                                  "Add Task",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                                color: const Color(0xFF5038BC),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: const Text(
-                              "Add Task",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),

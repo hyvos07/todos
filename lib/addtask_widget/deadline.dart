@@ -27,39 +27,6 @@ class _DeadlineFieldState extends State<DeadlineField> {
     _endDate = DateTime(now.year, now.month, now.day);
   }
 
-  Future<void> _selectStart(BuildContext context) async {
-    DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _startDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime.now(),
-    );
-
-    if (picked != null && picked.isAfter(_endDate)) {
-      _showWarningDialog(context, "Start date can't be\nafter end date");
-    } else if (picked != null && picked != _startDate) {
-      setState(() {
-        _startDate = picked;
-      });
-    }
-  }
-
-  Future<void> _selectEnd(BuildContext context) async {
-    DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _endDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-
-    if (picked != null && picked.isBefore(_startDate)) {
-      _showWarningDialog(context, "End date can't be\nbefore start date");
-    } else if (picked != null && picked != _endDate) {
-      setState(() {
-        _endDate = picked;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -248,6 +215,43 @@ class _DeadlineFieldState extends State<DeadlineField> {
     );
   }
 
+  // -- Start Date Picker -- //
+  Future<void> _selectStart(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _startDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+
+    if (picked != null && picked.isAfter(_endDate)) {
+      _showWarningDialog(context, "Start date can't be\nafter end date");
+    } else if (picked != null && picked != _startDate) {
+      setState(() {
+        _startDate = picked;
+      });
+    }
+  }
+
+  // -- End Date Picker -- //
+  Future<void> _selectEnd(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _endDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (picked != null && picked.isBefore(_startDate)) {
+      _showWarningDialog(context, "End date can't be\nbefore start date");
+    } else if (picked != null && picked != _endDate) {
+      setState(() {
+        _endDate = picked;
+      });
+    }
+  }
+  
+  // -- Warning Dialog (For Impossible Action)-- //
   void _showWarningDialog(BuildContext context, String message) {
     showDialog(
       context: context,
