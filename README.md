@@ -1,7 +1,6 @@
 <h1 align="center"> ToDos: To-Do List Application </h1>
 <img src="zReadme/banner.png">
 <br>
-<br>
 
 A To-Do List Application designed specifically for Mobile Device. This app was made with Flutter Framework and Dart Language.
 <br>
