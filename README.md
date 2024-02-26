@@ -1,7 +1,5 @@
 <h1 align="center"> ToDos: To-Do List Application </h1>
 <img src="zReadme/banner.png">
-<br>
-
 A To-Do List Application designed specifically for Mobile Device. This app was made with Flutter Framework and Dart Language.
 <br>
 <br>
@@ -29,6 +27,6 @@ Since I have experienced with designing an UI of a mobile application in <b>Peka
 <br>
 <br>
 <div align="center">
-    <img src="zReadme/kazuma.png" width="50">
+    <img src="zReadme/kazuma.png" width="55">
     <h4>Made by Daniel Liman <br> Copyright &copy; 2024</h4>
 </div>
