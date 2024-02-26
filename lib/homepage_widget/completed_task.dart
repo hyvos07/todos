@@ -1,25 +1,33 @@
-// ignore_for_file: empty_constructor_bodies
+// ignore_for_file: empty_constructor_bodies, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:todos/config/colorconfig.dart';
 import 'package:todos/homepage_widget/single_task.dart';
+import 'package:todos/object/task.dart';
 
 class CompletedTask extends StatelessWidget {
-  const CompletedTask({Key? key}) : super(key: key);
+  final List<Task> completedTasks;
+  final onChanged;
+  final onDeleted;
+
+  const CompletedTask({
+    super.key,
+    required this.completedTasks,
+    required this.onChanged,
+    required this.onDeleted,
+  });
 
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> completedTasks = [
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-      const SingleTask(taskName: 'Tasks', taskDone: true),
-    ];
+    List<Widget> completedList = [];
+    for (int i = 0; i < completedTasks.length; i++) {
+      completedList.add(SingleTask(
+        task: completedTasks[i],
+        onChanged: onChanged,
+        onDeleted: onDeleted,
+      ));
+    }
 
     return Container(
       padding: const EdgeInsets.only(left: 25, right: 25, bottom: 40),
@@ -45,7 +53,7 @@ class CompletedTask extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 1),
                 child: Text(
-                  "${completedTasks.length} Tasks",
+                  "${completedList.length} Tasks",
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     color: Colors.black,
@@ -62,11 +70,48 @@ class CompletedTask extends StatelessWidget {
             padding: const EdgeInsets.only(top: 17.5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: completedTasks,
+              children: content(completedList),
             ),
           )
         ],
       ),
     );
+  }
+
+  List<Widget> content(List<Widget> completedList) {
+    if(completedList.isEmpty){
+      return [
+        Container(
+        height: 100,
+        padding: const EdgeInsets.symmetric(vertical: 25),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "There is no completed task yet!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: cLightPurple,
+                fontSize: 14,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              "Are you procastinating?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: cLightPurple,
+                fontSize: 13,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      )];
+    }
+
+    return completedList;
   }
 }

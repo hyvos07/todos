@@ -1,11 +1,20 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
+import 'package:todos/config/colorconfig.dart';
+import 'package:todos/object/task.dart';
 
 class SingleTask extends StatelessWidget {
-  final String taskName;
-  final bool taskDone;
-  const SingleTask({super.key, required this.taskName, required this.taskDone});
+  final Task task;
+  final onChanged;
+  final onDeleted;
+
+  const SingleTask({
+    super.key,
+    required this.task,
+    required this.onChanged,
+    required this.onDeleted,
+  });
 
   Color btnColor(taskDone) {
     if (taskDone) {
@@ -17,14 +26,19 @@ class SingleTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? taskID = task.id;
+    final String? taskName = task.taskTitle;
+    final bool taskDone = task.taskDone;
 
-    Color btnOn = btnColor(taskDone);
+    Color btnStat = btnColor(taskDone);
+    Color textClr = taskDone
+        ? const Color.fromARGB(255, 133, 133, 133)
+        : const Color.fromARGB(255, 37, 37, 37);
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -41,57 +55,52 @@ class SingleTask extends StatelessWidget {
             )
           ],
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              taskName,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF4A4646),
-                fontSize: 14,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-                height: 0.10,
-              ),
+        child: ListTile(
+          visualDensity: VisualDensity.comfortable,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+          leading: TextButton(
+            onPressed: () {
+              onChanged(task);
+            },
+            child: Icon(
+              taskDone ? Icons.check_box : Icons.check_box_outline_blank,
+              color: cPurple,
+              size: 30,
             ),
-            SizedBox(
-              width: 22,
-              height: 22,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Container(
-                      width: 22,
-                      height: 22,
-                      decoration: const ShapeDecoration(
-                        color: Colors.white,
-                        shape: OvalBorder(
-                          side: BorderSide(width: 2, color: Color(0xFF5038BC)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 3,
-                    top: 3,
-                    child: Container(
-                      width: 16,
-                      height: 16,
-                      decoration: ShapeDecoration(
-                        color: btnOn,
-                        shape: const OvalBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          ),
+          title: Text(
+            taskName!,
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              color: textClr,
+              decoration: taskDone ? TextDecoration.lineThrough : null,
+              fontSize: 13,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              height: 0.10,
             ),
-          ],
+          ),
+          subtitle: !taskDone ? Text(
+            task.getDue(),
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              color: task.getDueColor(),
+              fontSize: 10,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w100,
+              height: 0.10,
+            ),
+          ) : null,
+          trailing: IconButton(
+            onPressed: () {
+              onDeleted(taskID);
+            },
+            icon: const Icon(
+              Icons.delete,
+              color: Color(0xFF5038BC),
+              size: 30,
+            ),
+          )
         ),
       ),
     );

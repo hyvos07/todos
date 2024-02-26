@@ -44,6 +44,7 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: PageView(
           controller: _pageController,
@@ -82,7 +83,7 @@ class _BasePageState extends State<BasePage> {
                   showUnselectedLabels: false,
                   showSelectedLabels: false,
                   selectedIconTheme: IconThemeData(size: 40),
-                  unselectedIconTheme: IconThemeData(size: 32),
+                  unselectedIconTheme: IconThemeData(size: 40),
                   onTap: (int index) {
                     setState(() {
                       _pageIndexNow = index;
@@ -115,8 +116,8 @@ class _BasePageState extends State<BasePage> {
                 ),
               ),
               child: Container(
-                width: 65,
-                height: 65,
+                width: 60,
+                height: 60,
                 decoration: BoxDecoration(
                   color: Color(0xFF5038bc),
                   shape: BoxShape.circle,
@@ -125,13 +126,13 @@ class _BasePageState extends State<BasePage> {
                       color: Color.fromARGB(24, 0, 0, 0),
                       blurRadius: 10,
                       offset: Offset(0, 1),
-                      spreadRadius: 0,
+                      spreadRadius: 2,
                     )
                   ],
                 ),
                 child: const Icon(
                   Icons.add,
-                  size: 40,
+                  size: 36,
                   color: Colors.white,
                 ),
               ),
