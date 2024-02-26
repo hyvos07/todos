@@ -26,7 +26,7 @@ class DescField extends StatelessWidget {
           ),
         ),
         Container(
-            margin: const EdgeInsets.only(top: 20, bottom: 20),
+            margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: const Color(0x285038BC),
@@ -37,7 +37,7 @@ class DescField extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: TextField(
-                maxLines: 6,
+                maxLines: 7,
                 decoration: const InputDecoration(
                   hintText: "Put your description here",
                   border: InputBorder.none,

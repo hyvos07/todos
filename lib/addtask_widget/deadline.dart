@@ -106,7 +106,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 2),
-                  margin: const EdgeInsets.only(top: 40),
+                  margin: const EdgeInsets.only(top: 35),
                   child: const Text(
                     "Start",
                     textAlign: TextAlign.left,
@@ -166,7 +166,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 2),
-                  margin: const EdgeInsets.only(top: 40),
+                  margin: const EdgeInsets.only(top: 35),
                   child: const Text(
                     "End",
                     textAlign: TextAlign.left,
