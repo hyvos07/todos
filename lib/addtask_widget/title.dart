@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class TitleField extends StatelessWidget {
   final _titleController = TextEditingController();
 
+  get titleController => _titleController;
+
   TitleField({super.key});
 
   @override

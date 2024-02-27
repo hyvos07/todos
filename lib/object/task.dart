@@ -5,8 +5,9 @@ import 'dart:ui';
 import 'package:todos/config/colorconfig.dart';
 
 class Task {
-  String? id; // ID will use "ID<milisecond from epoch time><random number>"
+  String? id; // ID will use "ID<milisecond from epoch time>"
   String? taskTitle;
+  String? taskDescription;
   bool taskDone;
   DateTime startDate;
   DateTime endDate;
@@ -14,6 +15,7 @@ class Task {
   Task({
     required this.id,
     required this.taskTitle,
+    required this.taskDescription,
     required this.startDate,
     required this.endDate,
     this.taskDone = false, // Default value == Not done
@@ -36,6 +38,13 @@ class Task {
     Color taskDueColor = due[2] as Color;
 
     return taskDueColor;
+  }
+
+  int getDueValue() {
+    List<Object> due = decideDue();
+    int difference = due[3] as int;
+
+    return difference;
   }
 
   List<Object> decideDue() {
@@ -62,6 +71,6 @@ class Task {
         taskDue = "This task is already due for";
         taskDueColor = cRed;
     }
-    return [taskDue, daysDifference, taskDueColor];
+    return [taskDue, daysDifference, taskDueColor, difference.inDays];
   }
 }

@@ -1,31 +1,22 @@
 // ignore_for_file: empty_constructor_bodies, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todos/config/colorconfig.dart';
 import 'package:todos/homepage_widget/single_task.dart';
 import 'package:todos/object/task.dart';
+import 'package:todos/object/taskvault.dart';
 
 class CompletedTask extends StatelessWidget {
-  final List<Task> completedTasks;
-  final onChanged;
-  final onDeleted;
-
-  const CompletedTask({
-    super.key,
-    required this.completedTasks,
-    required this.onChanged,
-    required this.onDeleted,
-  });
+  const CompletedTask({super.key,});
 
   @override
   Widget build(BuildContext context) {
-
+    List<Task> completedTasks = Provider.of<TaskVault>(context).completedTasks;
     List<Widget> completedList = [];
     for (int i = 0; i < completedTasks.length; i++) {
       completedList.add(SingleTask(
         task: completedTasks[i],
-        onChanged: onChanged,
-        onDeleted: onDeleted,
       ));
     }
 

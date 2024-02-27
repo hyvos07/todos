@@ -1,19 +1,24 @@
-// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, prefer_final_fields 
+// ignore_for_file: non_constant_identifier_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DeadlineField extends StatefulWidget {
-  const DeadlineField({super.key});
+  DeadlineField({super.key});
+
+  late DateTime now = DateTime.now();
+  late DateTime _startDate = DateTime(now.year, now.month, now.day);
+  late DateTime _endDate = DateTime(now.year, now.month, now.day);
+
+  get startDate => _startDate;
+  get endDate => _endDate;
 
   @override
   State<DeadlineField> createState() => _DeadlineFieldState();
 }
 
 class _DeadlineFieldState extends State<DeadlineField> {
-  late DateTime now = DateTime.now();
-  late DateTime _startDate = DateTime(now.year, now.month, now.day);
-  late DateTime _endDate = DateTime(now.year, now.month, now.day);
 
   // Every Loop on App, The Dates will be updated
   YourClass() {
@@ -23,20 +28,20 @@ class _DeadlineFieldState extends State<DeadlineField> {
   void _initializeDates() {
     // Update and Initialize the Dates
     DateTime now = DateTime.now();
-    _startDate = DateTime(now.year, now.month, now.day);
-    _endDate = DateTime(now.year, now.month, now.day);
+    widget._startDate = DateTime(now.year, now.month, now.day);
+    widget._endDate = DateTime(now.year, now.month, now.day);
   }
 
 
   @override
   Widget build(BuildContext context) {
-    String startDateFormat = DateFormat('MMM d, yyyy').format(_startDate);
-    String endDateFormat = DateFormat('MMM d, yyyy').format(_endDate);
+    String startDateFormat = DateFormat('MMM d, yyyy').format(widget._startDate);
+    String endDateFormat = DateFormat('MMM d, yyyy').format(widget._endDate);
 
-    DateTime nowDateDays = DateTime(now.year, now.month, now.day);
+    DateTime nowDateDays = DateTime(widget.now.year, widget.now.month, widget.now.day);
 
     DateTime endDateDays =
-        DateTime(_endDate.year, _endDate.month, _endDate.day);
+        DateTime(widget._endDate.year, widget._endDate.month, widget._endDate.day);
 
     Duration difference = endDateDays.difference(nowDateDays);
     String daysDifference = "${difference.inDays} days";
@@ -49,7 +54,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
         daysDifference = "Today";
         taskDueColor = const Color(0xFF5038BC);
       });
-    } else if (now.isBefore(_endDate)) {
+    } else if (widget.now.isBefore(widget._endDate)) {
       setState(() {
         daysDifference = "${difference.inDays} days";
         taskDueColor = const Color(0xFF5038BC);
@@ -219,16 +224,16 @@ class _DeadlineFieldState extends State<DeadlineField> {
   Future<void> _selectStart(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _startDate,
+      initialDate: widget._startDate,
       firstDate: DateTime(2000),
       lastDate: DateTime.now(),
     );
 
-    if (picked != null && picked.isAfter(_endDate)) {
+    if (picked != null && picked.isAfter(widget._endDate)) {
       _showWarningDialog(context, "Start date can't be\nafter end date");
-    } else if (picked != null && picked != _startDate) {
+    } else if (picked != null && picked != widget._startDate) {
       setState(() {
-        _startDate = picked;
+        widget._startDate = picked;
       });
     }
   }
@@ -237,16 +242,16 @@ class _DeadlineFieldState extends State<DeadlineField> {
   Future<void> _selectEnd(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _endDate,
+      initialDate: widget._endDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
 
-    if (picked != null && picked.isBefore(_startDate)) {
+    if (picked != null && picked.isBefore(widget._startDate)) {
       _showWarningDialog(context, "End date can't be\nbefore start date");
-    } else if (picked != null && picked != _endDate) {
+    } else if (picked != null && picked != widget._endDate) {
       setState(() {
-        _endDate = picked;
+        widget._endDate = picked;
       });
     }
   }
@@ -269,6 +274,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
           content: Padding(
             padding: const EdgeInsets.only(top: 5),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset(
                   'images/confusedmenhera.png',

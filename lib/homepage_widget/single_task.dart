@@ -1,28 +1,18 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todos/config/colorconfig.dart';
 import 'package:todos/object/task.dart';
+import 'package:todos/object/taskvault.dart';
 
 class SingleTask extends StatelessWidget {
   final Task task;
-  final onChanged;
-  final onDeleted;
 
   const SingleTask({
     super.key,
     required this.task,
-    required this.onChanged,
-    required this.onDeleted,
   });
-
-  Color btnColor(taskDone) {
-    if (taskDone) {
-      return const Color(0xFF5038BC);
-    } else {
-      return const Color(0xFFFFFFFF);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +20,6 @@ class SingleTask extends StatelessWidget {
     final String? taskName = task.taskTitle;
     final bool taskDone = task.taskDone;
 
-    Color btnStat = btnColor(taskDone);
     Color textClr = taskDone
         ? const Color.fromARGB(255, 133, 133, 133)
         : const Color.fromARGB(255, 37, 37, 37);
@@ -60,7 +49,8 @@ class SingleTask extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 5),
           leading: TextButton(
             onPressed: () {
-              onChanged(task);
+              var taskVault = Provider.of<TaskVault>(context, listen: false);
+              taskVault.onChanged(task);
             },
             child: Icon(
               taskDone ? Icons.check_box : Icons.check_box_outline_blank,
@@ -93,7 +83,8 @@ class SingleTask extends StatelessWidget {
           ) : null,
           trailing: IconButton(
             onPressed: () {
-              onDeleted(taskID);
+              var taskVault = Provider.of<TaskVault>(context, listen: false);
+              taskVault.onDeleted(taskID!);
             },
             icon: const Icon(
               Icons.delete,

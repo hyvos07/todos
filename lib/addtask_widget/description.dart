@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class DescField extends StatelessWidget {
   final _descController = TextEditingController();
 
+  get descController => _descController;
+
   DescField({super.key});
 
   @override

@@ -1,31 +1,22 @@
 // ignore_for_file: empty_constructor_bodies
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todos/config/colorconfig.dart';
 import 'package:todos/homepage_widget/single_task.dart';
 import 'package:todos/object/task.dart';
+import 'package:todos/object/taskvault.dart';
 
 class OngoingTask extends StatelessWidget {
-  final List<Task> onGoingTasks;
-  final onChanged;
-  final onDeleted;
-  
-  const OngoingTask({
-    super.key,
-    required this.onGoingTasks,
-    required this.onChanged,
-    required this.onDeleted,
-  });
+  const OngoingTask({super.key,});
 
   @override
   Widget build(BuildContext context) {
-
+    List<Task> onGoingTasks = Provider.of<TaskVault>(context).onGoingTasks;
     List<Widget> onGoingList = [];
     for (int i = 0; i < onGoingTasks.length; i++) {
       onGoingList.add(SingleTask(
         task: onGoingTasks[i],
-        onChanged: onChanged,
-        onDeleted: onDeleted,
       ));
     }
 
