@@ -2,14 +2,24 @@
 
 import 'dart:ui';
 
+import 'package:hive/hive.dart';
 import 'package:todos/config/colorconfig.dart';
 
+part "task.g.dart";
+
+@HiveType(typeId: 0)
 class Task {
+  @HiveField(0)
   String? id; // ID will use "ID<milisecond from epoch time>"
+  @HiveField(1)
   String? taskTitle;
+  @HiveField(2)
   String? taskDescription;
+  @HiveField(3)
   bool taskDone;
+  @HiveField(4)
   DateTime startDate;
+  @HiveField(5)
   DateTime endDate;
 
   Task({
@@ -21,9 +31,9 @@ class Task {
     this.taskDone = false, // Default value == Not done
   });
 
-  static List<Task> todoList() {
-    return [];
-  }
+  // static List<Task> todoList() {
+  //   return [];
+  // }
 
   String getDue() {
     List<Object> due = decideDue();
@@ -61,16 +71,21 @@ class Task {
     Color taskDueColor = const Color(0xFF5038BC);
 
     if (difference.inDays == 0) {
-        daysDifference = "Today";
-        taskDueColor = cLightPurple;
+      daysDifference = "Today";
+      taskDueColor = cLightPurple;
     } else if (now.isBefore(endDate)) {
-        daysDifference = "${difference.inDays} days";
-        taskDueColor = cLightPurple;
+      daysDifference = "${difference.inDays} days";
+      taskDueColor = cLightPurple;
     } else if (daysDifference.substring(0, 1) == "-") {
-        daysDifference = daysDifference.substring(1);
-        taskDue = "This task is already due for";
-        taskDueColor = cRed;
+      daysDifference = daysDifference.substring(1);
+      taskDue = "This task is already due for";
+      taskDueColor = cRed;
     }
     return [taskDue, daysDifference, taskDueColor, difference.inDays];
+  }
+
+  // Setter
+  void setTaskTitle(String title) {
+    taskTitle = title;
   }
 }

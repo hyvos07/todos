@@ -14,6 +14,15 @@ class DeadlineField extends StatefulWidget {
   get startDate => _startDate;
   get endDate => _endDate;
 
+  // Setter for Start and End Date
+  void setStartDate(DateTime date) {
+    _startDate = date;
+  }
+
+  void setEndDate(DateTime date) {
+    _endDate = date;
+  }
+
   @override
   State<DeadlineField> createState() => _DeadlineFieldState();
 }
@@ -95,7 +104,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                   onTap: () => _selectStart(context),
                   child: Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                        const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                     margin: const EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         border: Border.all(
@@ -155,7 +164,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                   onTap: () => _selectEnd(context),
                   child: Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                        const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                     margin: const EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         border: Border.all(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class NameField extends StatelessWidget {
   final _nameController = TextEditingController();
@@ -7,6 +8,9 @@ class NameField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _profileBox = Hive.box('profileBox');
+    _nameController.text = _profileBox.get('name', defaultValue: '');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,16 +42,17 @@ class NameField extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: TextField(
                 decoration: const InputDecoration(
-                    hintText: "Enter your name",
-                    border: InputBorder.none,
-                    hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 94, 86, 132),
-                      fontSize: 14,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w100,
-                    ),
+                  hintText: "Enter your name",
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                    color: Color.fromARGB(255, 94, 86, 132),
+                    fontSize: 14,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w100,
                   ),
+                ),
                 controller: _nameController,
+                onChanged: (value) => _profileBox.put('name', value),
               ),
             )),
       ],

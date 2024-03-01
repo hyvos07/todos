@@ -8,7 +8,9 @@ import 'package:todos/object/task.dart';
 import 'package:todos/object/taskvault.dart';
 
 class CompletedTask extends StatelessWidget {
-  const CompletedTask({super.key,});
+  const CompletedTask({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,37 +72,38 @@ class CompletedTask extends StatelessWidget {
   }
 
   List<Widget> content(List<Widget> completedList) {
-    if(completedList.isEmpty){
+    if (completedList.isEmpty) {
       return [
         Container(
-        height: 100,
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              "There is no completed task yet!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: cLightPurple,
-                fontSize: 14,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
+          height: 100,
+          padding: const EdgeInsets.symmetric(vertical: 25),
+          child: const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "There is no completed task yet!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: cLightPurple,
+                  fontSize: 14,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            Text(
-              "Are you procastinating?",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: cLightPurple,
-                fontSize: 13,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
+              Text(
+                "Are you procastinating?",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: cLightPurple,
+                  fontSize: 13,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-          ],
-        ),
-      )];
+            ],
+          ),
+        )
+      ];
     }
 
     return completedList;

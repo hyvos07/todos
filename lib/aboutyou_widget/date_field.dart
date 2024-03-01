@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 class DateField extends StatefulWidget {
@@ -11,7 +12,15 @@ class DateField extends StatefulWidget {
 }
 
 class _DateFieldState extends State<DateField> {
+  final _profileBox = Hive.box('profileBox');
   DateTime selectedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    // Load the existing birthday
+    selectedDate = _profileBox.get('birthdate', defaultValue: DateTime.now());
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -25,13 +34,14 @@ class _DateFieldState extends State<DateField> {
       setState(() {
         selectedDate = picked;
       });
+      _profileBox.put('birthdate', selectedDate);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('MMM d, yyyy').format(selectedDate);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

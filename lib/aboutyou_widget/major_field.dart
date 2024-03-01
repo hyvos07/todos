@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class MajorField extends StatelessWidget {
   final _majorController = TextEditingController();
+  final _profileBox = Hive.box('profileBox');
   
   MajorField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    _majorController.text = _profileBox.get('major', defaultValue: '');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -49,6 +52,7 @@ class MajorField extends StatelessWidget {
                   ),
                 ),
               controller: _majorController,
+              onChanged: (value) => _profileBox.put('major', value),
             ),
           )
         ),

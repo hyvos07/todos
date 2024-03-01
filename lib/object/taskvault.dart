@@ -1,44 +1,32 @@
 // ignore_for_file: prefer_final_fields
 
 import "package:flutter/foundation.dart";
+import "package:hive_flutter/hive_flutter.dart";
 import "package:todos/object/task.dart";
 
 class TaskVault with ChangeNotifier {
-  // Dummy Data - Temporary
-  List<Task> _listOfTasks = [
-    Task(
-      id: "1",
-      taskTitle: "Finish the UI Design",
-      taskDescription: "Finish the UI Design for the app",
-      taskDone: false,
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(const Duration(days: 3)),
-    ),
-    Task(
-      id: "2",
-      taskTitle: "Meeting with the Client",
-      taskDescription: "Meeting with the client to discuss the project",
-      taskDone: false,
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(const Duration(days: 7)),
-    ),
-    Task(
-      id: "3",
-      taskTitle: "Prepare the Presentation",
-      taskDescription: "Prepare the presentation for the meeting",
-      taskDone: false,
-      startDate: DateTime.now().subtract(const Duration(days: 3)),
-      endDate: DateTime.now().subtract(const Duration(days: 10)),
-    ),
-    Task(
-      id: "4",
-      taskTitle: "Send the Report",
-      taskDescription: "Send the report to the client",
-      taskDone: false,
-      startDate: DateTime.now().subtract(const Duration(days: 3)),
-      endDate: DateTime.now().subtract(const Duration(days: 7)),
-    ),
-  ];
+  final _taskBox = Hive.box('taskBox');
+
+  List<Task> _listOfTasks = [];
+
+  void loadData() {
+    if (_taskBox.get("listOfTasks") == null) {
+      // First time opening the app ==> load dummy data
+      _listOfTasks = [
+        Task(
+          id: "IDdummy",
+          taskTitle: "Add a new task",
+          taskDescription: "Add a new task by clicking the plus button!",
+          taskDone: false,
+          startDate: DateTime.now(),
+          endDate: DateTime.now(),
+        ),
+      ];
+    } else {
+      // Load existing data
+      _listOfTasks = (_taskBox.get('listOfTasks') as List).cast<Task>();
+    }
+  }
 
   List<Task> _onGoingTasks = [];
   List<Task> _completedTasks = [];
@@ -49,6 +37,7 @@ class TaskVault with ChangeNotifier {
 
   // Auto load the tasks into the ongoing and completed list
   TaskVault() {
+    loadData();
     refreshTask();
   }
 
@@ -73,6 +62,7 @@ class TaskVault with ChangeNotifier {
   // Refresh the task list
   void refreshTask() {
     sortTask();
+    _taskBox.put("listOfTasks", _listOfTasks);
     _onGoingTasks = [];
     _completedTasks = [];
     for (int i = 0; i < _listOfTasks.length; i++) {
@@ -97,5 +87,10 @@ class TaskVault with ChangeNotifier {
         }
       }
     }
+  }
+
+  // Get Task by ID
+  Task getTaskById(String id) {
+    return _listOfTasks.firstWhere((task) => task.id == id);
   }
 }
