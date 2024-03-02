@@ -24,7 +24,7 @@ This to-do list app use some state management, path provider and local storage d
 - **build_runner (2.1.2)**<br>
     Help Storing Class Objects to Local Storage
 
-and other general dependencies from the original dependencies
+and other general dependencies from the original dependencies.
 
 
 <br>
