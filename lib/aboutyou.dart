@@ -40,7 +40,7 @@ class _AboutYouPageState extends State<AboutYouPage> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Container(
-                  height: hei - 210,
+                  height: hei - 160,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(45),

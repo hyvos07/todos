@@ -83,7 +83,7 @@ class SingleTask extends StatelessWidget {
               ),
             ),
             subtitle: !taskDone ? Text(
-              task.getDue(),
+              task.getDueDays(),
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: task.getDueColor(),

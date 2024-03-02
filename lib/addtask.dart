@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:todos/addtask_widget/deadline.dart';
 import 'package:todos/addtask_widget/description.dart';
@@ -58,7 +60,7 @@ class _AddTaskState extends State<AddTask> {
             ),
             Positioned(
                 left: 18,
-                top: 50,
+                top: 55,
                 child: IconButton(
                   splashColor: Colors.transparent,
                   splashRadius: 1,
@@ -78,9 +80,9 @@ class _AddTaskState extends State<AddTask> {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
-                  height: hei - 150,
+                  height: hei - 110,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(45),

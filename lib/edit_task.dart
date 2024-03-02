@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:todos/addtask_widget/deadline.dart';
 import 'package:todos/addtask_widget/description.dart';
@@ -69,7 +70,7 @@ class _EditTaskState extends State<EditTask> {
             ),
             Positioned(
                 left: 18,
-                top: 50,
+                top: 55,
                 child: IconButton(
                   splashColor: Colors.transparent,
                   splashRadius: 1,
@@ -91,7 +92,7 @@ class _EditTaskState extends State<EditTask> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
-                  height: hei - 130,
+                  height: hei - 70,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(45),
@@ -105,13 +106,13 @@ class _EditTaskState extends State<EditTask> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 27),
+                          padding: const EdgeInsets.symmetric(vertical: 22),
                           child: Text(
                             wrapperText(widget.task.taskTitle!),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: cPurple,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w700,
                               height: 0.05,
@@ -137,7 +138,7 @@ class _EditTaskState extends State<EditTask> {
                                   deadlineField.startDate,
                                   deadlineField.endDate
                                 );
-
+                                                    
                                 Navigator.pop(context);
                               },
                               child: Container(
@@ -190,8 +191,8 @@ class _EditTaskState extends State<EditTask> {
   }
 
   String wrapperText(String text) {
-    if(text.length > 20) {
-      return "${text.substring(0, 20)}...";
+    if(text.length > 25) {
+      return "${text.substring(0, 25)}...";
     } else {
       return text;
     }

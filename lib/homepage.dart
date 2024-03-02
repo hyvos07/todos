@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 18,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w700,
                                   height: 0.05,
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     color: Colors.black,
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w400,
                                     height: 0.05,

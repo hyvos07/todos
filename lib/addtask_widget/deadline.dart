@@ -104,7 +104,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                   onTap: () => _selectStart(context),
                   child: Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
                     margin: const EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         border: Border.all(
@@ -118,7 +118,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                         const Icon(
                           Icons.calendar_today,
                           color: Color(0xFF5038BC),
-                          size: 25,
+                          size: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
@@ -128,7 +128,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                               startDateFormat,
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 94, 86, 132),
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w600,
                               ),
@@ -164,7 +164,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                   onTap: () => _selectEnd(context),
                   child: Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
                     margin: const EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         border: Border.all(
@@ -178,7 +178,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                         const Icon(
                           Icons.calendar_today,
                           color: Color(0xFF5038BC),
-                          size: 25,
+                          size: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
@@ -188,7 +188,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
                               endDateFormat,
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 94, 86, 132),
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w600,
                               ),
@@ -210,7 +210,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
             taskDue,
             style: TextStyle(
               color: taskDueColor,
-              fontSize: 17,
+              fontSize: 15,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w600,
             ),
@@ -220,7 +220,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
           daysDifference,
           style: TextStyle(
             color: taskDueColor,
-            fontSize: 18,
+            fontSize: 16,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
           ),

@@ -43,6 +43,13 @@ class Task {
     return "$taskDue $daysDifference";
   }
 
+  String getDueDays() {
+    List<Object> due = decideDue();
+    String daysDifference = due[1] as String;
+
+    return daysDifference;
+  }
+
   Color getDueColor() {
     List<Object> due = decideDue();
     Color taskDueColor = due[2] as Color;
