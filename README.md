@@ -33,20 +33,15 @@ and other general dependencies from the original dependencies.
 ## What Does This Application Have?
 
 In this app, users are treated with some feature that they can use, such as:
--  Add a new task with the "+" button,<br>
-<img src="zReadme/add_task.gif" width="200">
+-  Add a new task with the "+" button,<br><img src="zReadme/add_task.gif" width="200">
 
--  Edit the information of the previously added task,<br>
-<img src="zReadme/edit_task.gif" width="200">
+-  Edit the information of the previously added task,<br><img src="zReadme/edit_task.gif" width="200">
 
--  Check out the completed task (also uncheck it) and delete a task<br>
-<img src="zReadme/check.gif" width="200">
+-  Check out the completed task (also uncheck it) and delete a task<br><img src="zReadme/check.gif" width="200">
 
--  Get a motivational message of the day,<br>
-<img src="zReadme/motivate.jpg" width="400">
+-  Get a motivational message of the day,<br><img src="zReadme/motivate.jpg" width="400">
 
--  Create a simple profile information,<br>
-<img src="zReadme/profile.gif" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="zReadme/update_avatar.gif" width="200">
+-  Create a simple profile information,<br><img src="zReadme/profile.gif" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="zReadme/update_avatar.gif" width="200">
 
 
 
