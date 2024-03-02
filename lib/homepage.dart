@@ -19,6 +19,9 @@ class _HomePageState extends State<HomePage> {
     if(text.length > 7) {
       return "Master";
     } else {
+      if (text.isEmpty) {
+        return "Master";
+      }
       return text;
     }
   }

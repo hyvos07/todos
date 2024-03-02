@@ -111,8 +111,8 @@ class SingleTask extends StatelessWidget {
   }
 
   String wrapperText(String text) {
-    if(text.length > 25) {
-      return "${text.substring(0, 25)}...";
+    if(text.length > 20) {
+      return "${text.substring(0, 20)}...";
     } else {
       return text;
     }
