@@ -17,10 +17,11 @@ class Avatar extends StatefulWidget {
 class _AvatarState extends State<Avatar> {
   final _profileBox = Hive.box('profileBox');
 
-  String defaultAvatar = "images/morningmenhera.png";
-  String tempAvatarPath = ""; // This will be used in the avatar image
+  String defaultAvatar = "images/morningmenhera.png"; // Default avatar image
+  String tempAvatarPath = ""; // This will be directly used in the app
 
-  // _profileBox.get('avatarPath') is the default path
+  // _profileBox.get('avatarPath') is the default stored path,
+  // located from the app's directory
 
   bool _isLoading = false;
 
@@ -31,9 +32,9 @@ class _AvatarState extends State<Avatar> {
     super.initState();
     if (_profileBox.get('avatarPath', defaultValue: '') != '') {
       _image = File(_profileBox.get('avatarPath'));
-      tempAvatarPath = _profileBox.get('avatarPath'); // Make it same
+      tempAvatarPath = _profileBox.get('avatarPath'); // Make it same for app
     }
-    // If there's no image path stored in the box, use the default image
+    // If there's no image path saved in the storage, use the default image
   }
 
   @override
@@ -62,16 +63,20 @@ class _AvatarState extends State<Avatar> {
         _isLoading = true;
       });
 
+      // Open the image picker from the gallery
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.gallery);
 
+      // If the user picked an image
       if (pickedFile != null) {
         setState(() {
+          // Profile pic updated visually
           _profileBox.put('tempAvatarPath', pickedFile.path);
           _image = File(pickedFile.path);
           _avatarImage = _getAvatar();
         });
 
+        // Get the app's local directory
         final Directory dir = await getApplicationDocumentsDirectory();
 
         // Delete the old avatar image if it exists
@@ -85,9 +90,9 @@ class _AvatarState extends State<Avatar> {
         final File newAvatarImage =
             await File(pickedFile.path).copy('${dir.path}/avatar.jpg');
 
-        _profileBox.put('avatarPath', newAvatarImage.path);
+        _profileBox.put('avatarPath', newAvatarImage.path); // Save the path
       }
-      
+
       // Not picking any image anymore, loading complete
       setState(() {
         _isLoading = false;

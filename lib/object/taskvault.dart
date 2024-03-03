@@ -5,13 +5,14 @@ import "package:hive_flutter/hive_flutter.dart";
 import "package:todos/object/task.dart";
 
 class TaskVault with ChangeNotifier {
+  // Open the box containing the tasks
   final _taskBox = Hive.box('taskBox');
 
-  List<Task> _listOfTasks = [];
+  List<Task> _listOfTasks = []; // Initial value of the task list
 
   void loadData() {
     if (_taskBox.get("listOfTasks") == null) {
-      // First time opening the app ==> load dummy data
+      // First time opening after downloading the app ==> load dummy data
       _listOfTasks = [
         Task(
           id: "IDdummy",
@@ -23,22 +24,23 @@ class TaskVault with ChangeNotifier {
         ),
       ];
     } else {
-      // Load existing data
+      // Load existing data if list of tasks exists
       _listOfTasks = (_taskBox.get('listOfTasks') as List).cast<Task>();
     }
   }
 
-  List<Task> _onGoingTasks = [];
-  List<Task> _completedTasks = [];
+  List<Task> _onGoingTasks = []; // List of ongoing tasks
+  List<Task> _completedTasks = []; // List of completed tasks
 
+  // Getter
   List<Task> get listOfTasks => _listOfTasks;
   List<Task> get onGoingTasks => _onGoingTasks;
   List<Task> get completedTasks => _completedTasks;
 
   // Auto load the tasks into the ongoing and completed list
   TaskVault() {
-    loadData();
-    refreshTask();
+    loadData(); // Load the data from the Hive box
+    refreshTask(); // Sort adn load task to ongoing and completed list
   }
 
   // Change the ongoing/completed status of the task
@@ -61,10 +63,14 @@ class TaskVault with ChangeNotifier {
 
   // Refresh the task list
   void refreshTask() {
-    sortTask();
-    _taskBox.put("listOfTasks", _listOfTasks);
+    sortTask(); // Sort first
+    _taskBox.put("listOfTasks", _listOfTasks); // Then save it to Hive box
+    
+    // Reset the ongoing and completed list
     _onGoingTasks = [];
     _completedTasks = [];
+    
+    // Fill the ongoing and completed list
     for (int i = 0; i < _listOfTasks.length; i++) {
       if (_listOfTasks[i].taskDone == false) {
         onGoingTasks.add(_listOfTasks[i]);
@@ -72,6 +78,7 @@ class TaskVault with ChangeNotifier {
         completedTasks.add(_listOfTasks[i]);
       }
     }
+    // Notify all the components
     notifyListeners();
   }
 

@@ -14,8 +14,11 @@ class CompletedTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the list of completed tasks
     List<Task> completedTasks = Provider.of<TaskVault>(context).completedTasks;
     List<Widget> completedList = [];
+
+    // Convert and add the completed task to the list of widget
     for (int i = 0; i < completedTasks.length; i++) {
       completedList.add(SingleTask(
         task: completedTasks[i],
@@ -63,7 +66,7 @@ class CompletedTask extends StatelessWidget {
             padding: const EdgeInsets.only(top: 17.5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: content(completedList),
+              children: content(completedList), // Determine what to show
             ),
           )
         ],
@@ -71,8 +74,10 @@ class CompletedTask extends StatelessWidget {
     );
   }
 
+  // Function to determine if there is any completed task
   List<Widget> content(List<Widget> completedList) {
     if (completedList.isEmpty) {
+      // No completed task ==> display a message
       return [
         Container(
           height: 100,
@@ -106,6 +111,6 @@ class CompletedTask extends StatelessWidget {
       ];
     }
 
-    return completedList;
+    return completedList; // Completed task exists, display that list of widget
   }
 }

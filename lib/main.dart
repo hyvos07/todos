@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,20 +15,24 @@ import 'package:todos/object/taskvault.dart';
 void main() async {
   // Initialize Hive
   await Hive.initFlutter();
-  Hive.registerAdapter(TaskAdapter());
+
+  // This help Hive to understand how to read and write Task objects
+  Hive.registerAdapter(TaskAdapter()); 
 
   // Open the box
-  var taskBox = await Hive.openBox('taskBox');
-  var profileBox = await Hive.openBox('profileBox');
+  var taskBox = await Hive.openBox('taskBox'); // For storing tasks
+  var profileBox = await Hive.openBox('profileBox'); // For storing profile info
 
   runApp(
+    // State management using Provider
     ChangeNotifierProvider(
-      create: (context) => TaskVault(),
+      create: (context) => TaskVault(), // Initiate the Vault of the tasks
       child: MainApp(),
     ),
   );
 }
 
+// -- Main App -- //
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
@@ -50,7 +54,7 @@ class _MainAppState extends State<MainApp> {
   }
 }
 
-// -- Base of the App Page -- //
+// -- Base of the App Page (Bottom Navbar Holder) -- //
 class BasePage extends StatefulWidget {
   const BasePage({super.key});
 
@@ -59,6 +63,7 @@ class BasePage extends StatefulWidget {
 }
 
 class _BasePageState extends State<BasePage> {
+   // Page index and controller
   int _pageIndexNow = 0;
   final PageController _pageController = PageController();
   HomePage homePage = const HomePage();
@@ -77,13 +82,15 @@ class _BasePageState extends State<BasePage> {
           children: pages,
           onPageChanged: (int index) {
             setState(() {
-              _pageIndexNow = index;
+              // Change the page based on its index on pages list
+              _pageIndexNow = index; 
             });
           },
         ),
         bottomNavigationBar: Stack(
           alignment: AlignmentDirectional.center,
           children: [
+            // -- Bottom Navbar -- //
             Container(
               height: 80,
               decoration: BoxDecoration(
@@ -115,16 +122,18 @@ class _BasePageState extends State<BasePage> {
                       _pageIndexNow = index;
                       _pageController.animateToPage(
                         index,
-                        duration: Duration(milliseconds: 200),
+                        duration: Duration(milliseconds: 200), // 200 ms animate
                         curve: Curves.easeInOut,
                       );
                     });
                   },
                   items: const [
+                    // -- Homepage Button -- //
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
                       label: 'Home',
                     ),
+                    // -- Profile Page Button -- //
                     BottomNavigationBarItem(
                       icon: Icon(Icons.person),
                       label: 'About You',
@@ -133,6 +142,8 @@ class _BasePageState extends State<BasePage> {
                 ),
               ),
             ),
+            
+            // -- Add task button -- //
             Positioned(
                 child: GestureDetector(
               onTap: () => Navigator.push(

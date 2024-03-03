@@ -1,3 +1,5 @@
+// Storing all the color constants used in the app
+
 import 'package:flutter/material.dart';
 
 const Color cRed = Color(0xFFDA4040);

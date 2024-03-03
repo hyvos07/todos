@@ -26,7 +26,6 @@ This to-do list app use some state management, path provider and local storage d
 
 and other general dependencies from the original dependencies.
 
-
 <br>
 <br>
 
@@ -35,7 +34,7 @@ and other general dependencies from the original dependencies.
 In this app, users are treated with some feature that they can use, such as:
 -  Add a new task with the "+" button,<br><br><img src="zReadme/add_task.gif" width="200">
 
--  Edit the information of the previously added task,<br><br><img src="zReadme/edit_task.gif" width="200">
+-  Edit the information of the previously added task by long-pressing the task,<br><br><img src="zReadme/edit_task.gif" width="200">
 
 -  Check out the completed task (also uncheck it) and delete a task<br><br><img src="zReadme/check.gif" width="200">
 

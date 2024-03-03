@@ -9,6 +9,7 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Load the saved user's email from the profileBox
     _emailController.text = _profileBox.get('email', defaultValue: '');
 
     return Column(

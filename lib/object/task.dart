@@ -1,15 +1,17 @@
 // ignore_for_file: prefer_final_fields
 
+// Class Task to implement OOP concepts, making storing and retrieving data easier
+
 import 'dart:ui';
 
 import 'package:hive/hive.dart';
 import 'package:todos/config/colorconfig.dart';
 
-part "task.g.dart";
+part "task.g.dart"; // Build runner
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 0) // Hive type ID
 class Task {
-  @HiveField(0)
+  @HiveField(0) // Hive field ID
   String? id; // ID will use "ID<milisecond from epoch time>"
   @HiveField(1)
   String? taskTitle;
@@ -35,6 +37,7 @@ class Task {
   //   return [];
   // }
 
+  // Getter for the due date: "The task is due for <due date>" or else
   String getDue() {
     List<Object> due = decideDue();
     String taskDue = due[0] as String;
@@ -43,6 +46,7 @@ class Task {
     return "$taskDue $daysDifference";
   }
 
+  // Getter for the due date in days
   String getDueDays() {
     List<Object> due = decideDue();
     String daysDifference = due[1] as String;
@@ -50,6 +54,7 @@ class Task {
     return daysDifference;
   }
 
+  // Getter for the due date color: cLightPurple for positive, cRed for negative
   Color getDueColor() {
     List<Object> due = decideDue();
     Color taskDueColor = due[2] as Color;
@@ -57,6 +62,7 @@ class Task {
     return taskDueColor;
   }
 
+  // Getter for the due date in number of days
   int getDueValue() {
     List<Object> due = decideDue();
     int difference = due[3] as int;
@@ -64,6 +70,7 @@ class Task {
     return difference;
   }
 
+  // Decide the due date; all getter will use this method
   List<Object> decideDue() {
     DateTime now = DateTime.now();
 
@@ -91,7 +98,8 @@ class Task {
     return [taskDue, daysDifference, taskDueColor, difference.inDays];
   }
 
-  // Setter
+  // Setter to change the task title
+  // (just in case if task object's fields are unaccessible)
   void setTaskTitle(String title) {
     taskTitle = title;
   }

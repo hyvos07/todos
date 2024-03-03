@@ -1,20 +1,23 @@
-// ignore_for_file: use_build_context_synchronously, prefer_final_fields 
+// ignore_for_file: use_build_context_synchronously, prefer_final_fields
 // ignore_for_file: non_constant_identifier_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+// Start date and end date for the task filled with this widget
 
 class DeadlineField extends StatefulWidget {
   DeadlineField({super.key});
 
-  late DateTime now = DateTime.now();
+  late DateTime now = DateTime.now(); // For determine how many days left
+  
+  // Default Start and End Date
   late DateTime _startDate = DateTime(now.year, now.month, now.day);
   late DateTime _endDate = DateTime(now.year, now.month, now.day);
 
   get startDate => _startDate;
   get endDate => _endDate;
 
-  // Setter for Start and End Date
+  // Setter for Start and End Date (for edit tasks default date)
   void setStartDate(DateTime date) {
     _startDate = date;
   }
@@ -28,10 +31,9 @@ class DeadlineField extends StatefulWidget {
 }
 
 class _DeadlineFieldState extends State<DeadlineField> {
-
   // Every Loop on App, The Dates will be updated
   YourClass() {
-    _initializeDates();
+    _initializeDates(); // Just to make sure the date is not null
   }
 
   void _initializeDates() {
@@ -41,34 +43,42 @@ class _DeadlineFieldState extends State<DeadlineField> {
     widget._endDate = DateTime(now.year, now.month, now.day);
   }
 
-
   @override
   Widget build(BuildContext context) {
-    String startDateFormat = DateFormat('MMM d, yyyy').format(widget._startDate);
+    // intl DateFormat
+    String startDateFormat =
+        DateFormat('MMM d, yyyy').format(widget._startDate);
     String endDateFormat = DateFormat('MMM d, yyyy').format(widget._endDate);
 
-    DateTime nowDateDays = DateTime(widget.now.year, widget.now.month, widget.now.day);
+    // Get date's days only
+    DateTime nowDateDays =
+        DateTime(widget.now.year, widget.now.month, widget.now.day);
 
-    DateTime endDateDays =
-        DateTime(widget._endDate.year, widget._endDate.month, widget._endDate.day);
+    DateTime endDateDays = DateTime(
+        widget._endDate.year, widget._endDate.month, widget._endDate.day);
 
+    // Calculate the interval between the dates
     Duration difference = endDateDays.difference(nowDateDays);
     String daysDifference = "${difference.inDays} days";
 
+    // Default message for the due date
     String taskDue = "This task is due for:";
     Color taskDueColor = const Color(0xFF5038BC);
 
     if (difference.inDays == 0) {
+      // Deadline == Today
       setState(() {
         daysDifference = "Today";
         taskDueColor = const Color(0xFF5038BC);
       });
     } else if (widget.now.isBefore(widget._endDate)) {
+      // Deadline > Today
       setState(() {
         daysDifference = "${difference.inDays} days";
         taskDueColor = const Color(0xFF5038BC);
       });
     } else if (daysDifference.substring(0, 1) == "-") {
+      // Deadline < Today (Overdue)
       setState(() {
         daysDifference = daysDifference.substring(1);
         taskDue = "This task is already due for:";
@@ -264,7 +274,7 @@ class _DeadlineFieldState extends State<DeadlineField> {
       });
     }
   }
-  
+
   // -- Warning Dialog (For Impossible Action)-- //
   void _showWarningDialog(BuildContext context, String message) {
     showDialog(

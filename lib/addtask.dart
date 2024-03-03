@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:todos/addtask_widget/deadline.dart';
 import 'package:todos/addtask_widget/description.dart';
@@ -16,16 +14,19 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
+  // Initialize pages instance
   TitleField titleField = TitleField();
   DescField descField = DescField();
   DeadlineField deadlineField = DeadlineField();
 
+  // The new tasks value are collected here
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
 
   _AddTaskState() {
+    // Make a reference to the controllers
     titleController = titleField.titleController;
     descController = descField.descController;
     startDate = deadlineField.startDate;
@@ -98,11 +99,13 @@ class _AddTaskState extends State<AddTask> {
                         titleField,
                         descField,
                         deadlineField,
+                        // -- Add Task Button -- //
                         Expanded(
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: GestureDetector(
                               onTap: () {
+                                // Check if the title field is empty
                                 if (titleController.text.isEmpty || 
                                 titleController.text == "") {
                                   return _showWarningDialog(
@@ -110,14 +113,17 @@ class _AddTaskState extends State<AddTask> {
                                     "Title field can\nnot be empty"
                                   );
                                 }
+                                // Add the new task
                                 onAddingTask(
                                   titleController.text,
                                   descController.text,
                                   deadlineField.startDate,
                                   deadlineField.endDate
                                 );
+                                // Refresh the task list, just to make sure
                                 Provider.of<TaskVault>(context, listen: false)
                                     .refreshTask();
+                                // Close page
                                 Navigator.pop(context);
                               },
                               child: Container(
@@ -158,9 +164,11 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
+  // Function to add a new task
   void onAddingTask(title, desc, start, end) {
     // Create a new task object
     Task task = Task(
+      // ID contains "ID" + the current time in milliseconds since epoch
       id: "ID${DateTime.now().millisecondsSinceEpoch.toString()}",
       taskTitle: title,
       taskDescription: desc,
@@ -168,10 +176,11 @@ class _AddTaskState extends State<AddTask> {
       endDate: end,
     );
 
-    Provider.of<TaskVault>(context, listen: false).addTask(task);
-    Provider.of<TaskVault>(context, listen: false).refreshTask();
+    Provider.of<TaskVault>(context, listen: false).addTask(task); // Add Task
+    Provider.of<TaskVault>(context, listen: false).refreshTask(); // Refresh
   }
 
+  // Function to show a warning dialog
   void _showWarningDialog(BuildContext context, String message) {
     showDialog(
       context: context,

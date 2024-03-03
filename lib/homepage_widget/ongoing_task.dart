@@ -8,12 +8,17 @@ import 'package:todos/object/task.dart';
 import 'package:todos/object/taskvault.dart';
 
 class OngoingTask extends StatelessWidget {
-  const OngoingTask({super.key,});
+  const OngoingTask({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // Get the list of ongoing tasks
     List<Task> onGoingTasks = Provider.of<TaskVault>(context).onGoingTasks;
     List<Widget> onGoingList = [];
+
+    // Convert and add the ongoing task to the list of widget
     for (int i = 0; i < onGoingTasks.length; i++) {
       onGoingList.add(SingleTask(
         task: onGoingTasks[i],
@@ -61,7 +66,7 @@ class OngoingTask extends StatelessWidget {
             padding: const EdgeInsets.only(top: 17.5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: content(onGoingList),
+              children: content(onGoingList), // Determine what to show
             ),
           )
         ],
@@ -69,40 +74,42 @@ class OngoingTask extends StatelessWidget {
     );
   }
 
+  // Function to determine if there is any ongoing task; else, display a message
   List<Widget> content(List<Widget> onGoingList) {
-    if(onGoingList.isEmpty){
+    if (onGoingList.isEmpty) {
       return [
         Container(
-        height: 100,
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              "There is no on going task!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: cLightPurple,
-                fontSize: 14,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
+          height: 100,
+          padding: const EdgeInsets.symmetric(vertical: 25),
+          child: const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "There is no on going task!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: cLightPurple,
+                  fontSize: 14,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            Text(
-              "Great job at completing it all :)",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: cLightPurple,
-                fontSize: 13,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
+              Text(
+                "Great job at completing it all :)",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: cLightPurple,
+                  fontSize: 13,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-          ],
-        ),
-      )];
+            ],
+          ),
+        )
+      ];
     }
 
-    return onGoingList;
+    return onGoingList; // Ongoing task exists, display that list of widget
   }
 }

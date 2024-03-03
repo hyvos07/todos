@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:todos/addtask_widget/deadline.dart';
 import 'package:todos/addtask_widget/description.dart';
@@ -9,7 +8,7 @@ import 'package:todos/object/task.dart';
 import 'package:todos/object/taskvault.dart';
 
 class EditTask extends StatefulWidget {
-  final Task task;
+  final Task task; // Task to be edited
   const EditTask({super.key, required this.task});
 
   @override
@@ -17,10 +16,12 @@ class EditTask extends StatefulWidget {
 }
 
 class _EditTaskState extends State<EditTask> {
+  // Initialize pages instance
   TitleField titleField = TitleField();
   DescField descField = DescField();
   DeadlineField deadlineField = DeadlineField();
-
+  
+  // Save the value here
   late TextEditingController titleController = TextEditingController();
   late TextEditingController descController = TextEditingController();
   late DateTime startDate = DateTime.now();
@@ -29,7 +30,8 @@ class _EditTaskState extends State<EditTask> {
   @override
   void initState() {
     super.initState();
-
+    
+    // Get the current value of the task
     Task task = widget.task;
 
     titleController = titleField.titleController;
@@ -105,6 +107,7 @@ class _EditTaskState extends State<EditTask> {
                         horizontal: 25, vertical: 20),
                     child: Column(
                       children: [
+                        // -- Task's Current Title -- //
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 22),
                           child: Text(
@@ -122,23 +125,26 @@ class _EditTaskState extends State<EditTask> {
                         titleField,
                         descField,
                         deadlineField,
+                        // -- Edit Task Button -- //
                         Expanded(
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: GestureDetector(
                               onTap: () {
+                                // Check if the title is empty
                                 if (titleController.text.isEmpty ||
                                     titleController.text == "") {
                                   return _showWarningDialog(
                                       context, "Title field can\nnot be empty");
                                 }
+                                // Edit the task
                                 onEditingTask(
                                   titleController.text,
                                   descController.text,
                                   deadlineField.startDate,
                                   deadlineField.endDate
                                 );
-                                                    
+                                // Close the page               
                                 Navigator.pop(context);
                               },
                               child: Container(
@@ -179,6 +185,7 @@ class _EditTaskState extends State<EditTask> {
     );
   }
 
+  // Re-assign all of the task's value, even it was not editted
   void onEditingTask(title, desc, start, end) {
     Task task = widget.task;
 
@@ -189,7 +196,8 @@ class _EditTaskState extends State<EditTask> {
 
     Provider.of<TaskVault>(context, listen: false).refreshTask();
   }
-
+  
+  // Wrap string if it's too long
   String wrapperText(String text) {
     if(text.length > 25) {
       return "${text.substring(0, 25)}...";
@@ -198,6 +206,7 @@ class _EditTaskState extends State<EditTask> {
     }
   }
 
+  // Warning dialog
   void _showWarningDialog(BuildContext context, String message) {
     showDialog(
       context: context,

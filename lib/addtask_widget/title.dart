@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// Task title field
 
 class TitleField extends StatelessWidget {
   final _titleController = TextEditingController();
@@ -40,6 +41,10 @@ class TitleField extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: TextField(
                 decoration: const InputDecoration(
+                  /*
+                  There is no limitation on how long the task's name can be,
+                  but there is a wrapper to resolve the overflow issue.
+                  */
                   hintText: "Enter the task's name",
                   border: InputBorder.none,
                   hintStyle: TextStyle(

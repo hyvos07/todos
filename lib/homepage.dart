@@ -13,8 +13,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Open Hive Box
   final _profileBox = Hive.box('profileBox');
 
+  // Wrapper for the username: limiting text to 7 characters
   String wrapperText(String text) {
     if(text.length > 7) {
       return "Master";
@@ -30,6 +32,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // Get Today's Date; Adding 7 hours to change default UTC timezone to GMT+7
     DateTime now = DateTime.now().toUtc().add(const Duration(hours: 7));
+    
+    // Get Username from Hive Box and wrap it
     String username = _profileBox.get(
       'name', defaultValue: "Master").split(" ")[0];
     username = wrapperText(username);

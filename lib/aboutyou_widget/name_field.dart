@@ -1,14 +1,17 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class NameField extends StatelessWidget {
   final _nameController = TextEditingController();
+  final _profileBox = Hive.box('profileBox');
 
   NameField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _profileBox = Hive.box('profileBox');
+    // Load the saved user's name from the profileBox
     _nameController.text = _profileBox.get('name', defaultValue: '');
 
     return Column(

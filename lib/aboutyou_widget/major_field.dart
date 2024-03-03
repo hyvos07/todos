@@ -9,6 +9,7 @@ class MajorField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Load the saved user's major from the profileBox
     _majorController.text = _profileBox.get('major', defaultValue: '');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

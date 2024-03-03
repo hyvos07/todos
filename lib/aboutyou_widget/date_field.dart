@@ -13,7 +13,7 @@ class DateField extends StatefulWidget {
 
 class _DateFieldState extends State<DateField> {
   final _profileBox = Hive.box('profileBox');
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now(); // Default value
 
   @override
   void initState() {
@@ -22,6 +22,7 @@ class _DateFieldState extends State<DateField> {
     selectedDate = _profileBox.get('birthdate', defaultValue: DateTime.now());
   }
 
+  // Date picker widget
   Future<void> _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -40,6 +41,7 @@ class _DateFieldState extends State<DateField> {
 
   @override
   Widget build(BuildContext context) {
+    // intl DateFormat
     String formattedDate = DateFormat('MMM d, yyyy').format(selectedDate);
 
     return Column(

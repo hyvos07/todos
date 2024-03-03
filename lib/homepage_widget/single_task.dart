@@ -17,20 +17,25 @@ class SingleTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the task details
     final String? taskID = task.id;
     final String? taskName = task.taskTitle;
     final bool taskDone = task.taskDone;
 
+    // Task done ==> more greyish color
     Color textClr = taskDone
         ? const Color.fromARGB(255, 133, 133, 133)
         : const Color.fromARGB(255, 37, 37, 37);
 
     return GestureDetector(
+      // Long press the task tile ==> edit the task
       onLongPress: () {
         var taskVault = Provider.of<TaskVault>(context, listen: false);
+        // Get the corresponding task
         Task soonEditedTask = taskVault.getTaskById(taskID!);
         Navigator.push(
           context,
+          // Let the tasks object passed to the edit task page
           MaterialPageRoute(
             builder: (context) => EditTask(task: soonEditedTask),
           ),
@@ -57,14 +62,16 @@ class SingleTask extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            visualDensity: VisualDensity.comfortable,
+            visualDensity: VisualDensity.comfortable, // Bigger ListTile
             contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+            // Check button
             leading: TextButton(
               onPressed: () {
                 var taskVault = Provider.of<TaskVault>(context, listen: false);
                 taskVault.onChanged(task);
               },
               child: Icon(
+                // Task done ==> check box, else ==> empty check box
                 taskDone ? Icons.check_box : Icons.check_box_outline_blank,
                 color: cPurple,
                 size: 30,
@@ -74,7 +81,9 @@ class SingleTask extends StatelessWidget {
               wrapperText(taskName!),
               textAlign: TextAlign.start,
               style: TextStyle(
+                // Text color decided on the declaration of the variable above
                 color: textClr,
+                // Task done ==> line through, else ==> normal
                 decoration: taskDone ? TextDecoration.lineThrough : null,
                 fontSize: 13,
                 fontFamily: 'Poppins',
@@ -82,7 +91,9 @@ class SingleTask extends StatelessWidget {
                 height: 0.10,
               ),
             ),
+            // If the task is done, the subtitle will be null/empty
             subtitle: !taskDone ? Text(
+              // Get the due date: "<due days> days" or just "Today"
               task.getDueDays(),
               textAlign: TextAlign.start,
               style: TextStyle(
@@ -93,6 +104,7 @@ class SingleTask extends StatelessWidget {
                 height: 0.10,
               ),
             ) : null,
+            // Delete Button
             trailing: IconButton(
               onPressed: () {
                 var taskVault = Provider.of<TaskVault>(context, listen: false);
@@ -110,6 +122,7 @@ class SingleTask extends StatelessWidget {
     );
   }
 
+  // Wrapper text for the task title
   String wrapperText(String text) {
     if(text.length > 20) {
       return "${text.substring(0, 20)}...";
